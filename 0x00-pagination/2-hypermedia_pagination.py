@@ -46,7 +46,7 @@ class Server:
         data_value = self.get_page(page, page_size)
         prev_value = page_size - 1 if page_size > page else page - 1
         next_value = page_size + 1 if page_size > page else page + 1
-        total_value = math.ceil(len(self.dataset()) // page_size)
+        total_value = math.ceil(len(self.dataset()) // page_size) + 1
         if (next_value > total_value):
             next_value = None
         if (page == 0):
