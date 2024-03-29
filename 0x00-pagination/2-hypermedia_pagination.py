@@ -44,11 +44,11 @@ class Server:
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """get_hyper method"""
-        data_value: list = self.get_page(page, page_size)
-        total_value: int = math.ceil(len(self.dataset()) / page_size)
-        prev_value: int | None = None if page - 1 ==\
+        data_value = self.get_page(page, page_size)
+        total_value = math.ceil(len(self.dataset()) / page_size)
+        prev_value = None if page - 1 ==\
             0 else page - 1
-        next_value: int | None = None if page + 1 >\
+        next_value = None if page + 1 >\
             total_value else page + 1
         return {'page_size': len(data_value),
                 'page': page,
