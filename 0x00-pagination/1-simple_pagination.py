@@ -34,10 +34,7 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         assert type(page) is int and page > 0
         assert type(page_size) is int and page_size > 0
-        with open('7d3576d97e7560ae85135cc214ffe2b3412c51d7(1).csv') as file:
-            content = file.readlines()
-        rows = content[1:]
-        to_find = index_range(page,  page_size)
-        if (page_size > len(rows) or page > len(rows)):
+        to_find: tuple = index_range(page,  page_size)
+        if (page_size > len(self.dataset()) or page > len(self.dataset())):
             return []
-        return rows[to_find[0]:to_find[1]]
+        return self.dataset()[to_find[0]:to_find[1]]
