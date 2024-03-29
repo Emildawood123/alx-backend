@@ -54,5 +54,5 @@ class Server:
         return {'page_size': len(data_value),
                 'page': page,
                 'data': data_value,
-                'next_page': next_value,  'prev_page': prev_value,
-                'total_page': total_value}
+                'prev_page': prev_value,  'next_page': next_value,
+                'total_pages': total_value}
