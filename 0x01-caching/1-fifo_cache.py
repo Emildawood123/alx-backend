@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-
+"""FIFOCache class"""
 from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """LIFOCache"""
+    """FIFOCache"""
     def __init__(self):
         super().__init__()
 
