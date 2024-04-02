@@ -4,7 +4,7 @@ from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
-
+    """BasicCache"""
     def put(self, key, item):
         """put method"""
         if key is None or item is None:
@@ -18,6 +18,7 @@ class BasicCache(BaseCaching):
                 self.cache_data[key] = item
 
     def get(self, key):
+        """get method"""
         try:
             return self.cache_data[key]
         except Exception:
