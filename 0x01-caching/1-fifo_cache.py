@@ -4,8 +4,9 @@ from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """FIFOCache"""
+    """FIFOCache class"""
     def __init__(self):
+        """__init__ constructor"""
         super().__init__()
 
     def put(self, key, item):
