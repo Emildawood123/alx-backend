@@ -13,16 +13,15 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         """put method"""
-        if key is None or item is None:
-            return
-        else:
+        if key is not None and item is not None:
             if (
                 len(self.cache_data) == self.MAX_ITEMS
                 and key not in self.cache_data.keys()
             ):
-                discard = self._last_key
-                del self.cache_data[discard]
-                print(f"DISCARD: {discard}")
+                discarded_key = self._last_key
+                del self.cache_data[discarded_key]
+                print(f"DISCARD: {discarded_key}")
+
             self.cache_data[key] = item
             self._last_key = key
 
