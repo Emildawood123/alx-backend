@@ -3,6 +3,7 @@
 
 from base_caching import BaseCaching
 
+
 class LIFOCache(BaseCaching):
     """LIFOCache"""
     def __init__(self):
@@ -14,16 +15,19 @@ class LIFOCache(BaseCaching):
         if key is None or item is None:
             return
         else:
-            try:
-                if self.cache_data[key] is item:
-                    return
-                self.cache_data[key] = item
-            except Exception:
-                self.cache_data[key] = item
-        if len(self.cache_data) > self.MAX_ITEMS:
-            k = list(self.cache_data.keys())[-2]
-            del self.cache_data[k]
-            self.discard = k
+            """put method"""
+        if key is None or item is None:
+            return
+        else:
+            if (
+                len(self.cache_data) == self.MAX_ITEMS
+                and key not in self.cache_data.keys()
+            ):
+                discard = self._last_key
+                del self.cache_data[discard]
+                print(f"DISCARD: {discard}")
+            self.cache_data[key] = item
+            self._last_key = key
 
     def get(self, key):
         """get method"""
@@ -31,19 +35,3 @@ class LIFOCache(BaseCaching):
             return self.cache_data[key]
         except Exception:
             return None
-
-
-my_cache = LIFOCache()
-my_cache.put("A", "Hello")
-my_cache.put("B", "World")
-my_cache.put("C", "Holberton")
-my_cache.put("D", "School")
-my_cache.print_cache()
-my_cache.put("E", "Battery")
-my_cache.print_cache()
-my_cache.put("C", "Street")
-my_cache.print_cache()
-my_cache.put("F", "Mission")
-my_cache.print_cache()
-my_cache.put("G", "San Francisco")
-my_cache.print_cache()

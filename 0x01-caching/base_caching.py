@@ -8,7 +8,7 @@ class BaseCaching():
       - where your data are stored (in a dictionary)
     """
     MAX_ITEMS = 4
-    discard = ''
+
     def __init__(self):
         """ Initiliaze
         """
@@ -17,9 +17,6 @@ class BaseCaching():
     def print_cache(self):
         """ Print the cache
         """
-        if self.discard != '':
-            print(f'DISCARD: {self.discard}')
-            self.discard = ''
         print("Current cache:")
         for key in sorted(self.cache_data.keys()):
             print("{}: {}".format(key, self.cache_data.get(key)))

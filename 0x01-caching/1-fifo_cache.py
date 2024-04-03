@@ -14,16 +14,11 @@ class FIFOCache(BaseCaching):
         if key is None or item is None:
             return
         else:
-            try:
-                if self.cache_data[key] is item:
-                    return
-                self.cache_data[key] = item
-            except Exception:
-                self.cache_data[key] = item
-        if len(self.cache_data) > self.MAX_ITEMS:
-            k = list(self.cache_data.keys())[0]
-            del self.cache_data[k]
-            self.discard = k
+            self.cache_data[key] = item
+            if len(self.cache_data) > self.MAX_ITEMS:
+                discard = sorted(self.cache_data.keys())[0]
+                del self.cache_data[discard]
+                print(f"DISCARD: {discard}")
 
     def get(self, key):
         """get method"""
