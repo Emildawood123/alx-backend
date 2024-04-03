@@ -15,10 +15,6 @@ class LIFOCache(BaseCaching):
         if key is None or item is None:
             return
         else:
-            """put method"""
-        if key is None or item is None:
-            return
-        else:
             if (
                 len(self.cache_data) == self.MAX_ITEMS
                 and key not in self.cache_data.keys()
