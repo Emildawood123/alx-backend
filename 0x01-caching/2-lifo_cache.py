@@ -9,6 +9,7 @@ class LIFOCache(BaseCaching):
     def __init__(self):
         """__init__ constructor"""
         super().__init__()
+        self._last = None
 
     def put(self, key, item):
         """put method"""
@@ -19,11 +20,11 @@ class LIFOCache(BaseCaching):
                 len(self.cache_data) == self.MAX_ITEMS
                 and key not in self.cache_data.keys()
             ):
-                discard = self._last_key
+                discard = self._last
                 del self.cache_data[discard]
                 print(f"DISCARD: {discard}")
             self.cache_data[key] = item
-            self._last_key = key
+            self._last = key
 
     def get(self, key):
         """get method"""
