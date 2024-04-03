@@ -1,18 +1,20 @@
 #!/usr/bin/python3
-"""lifo cahce 2"""
+"""
+LIFOCache module
+"""
 
-from base_caching import BaseCaching
+BaseCaching = __import__("base_caching").BaseCaching
 
 
 class LIFOCache(BaseCaching):
-    """LIFOCache"""
+    """LIFOCache class"""
+
     def __init__(self):
-        """__init__ constructor"""
         super().__init__()
         self._last_key = None
 
     def put(self, key, item):
-        """put method"""
+        """Add an item in the cache"""
         if key is not None and item is not None:
             if (
                 len(self.cache_data) == self.MAX_ITEMS
@@ -26,7 +28,7 @@ class LIFOCache(BaseCaching):
             self._last_key = key
 
     def get(self, key):
-        """get method"""
+        """Get an item by key"""
         try:
             return self.cache_data[key]
         except Exception:
