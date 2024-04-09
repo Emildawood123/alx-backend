@@ -60,4 +60,3 @@ def hello():
     if login_as and int(login_as) in users:
         username = g.user["name"]
     return render_template("5-index.html", username=username)
-
