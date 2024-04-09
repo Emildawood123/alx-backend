@@ -43,6 +43,9 @@ def before_request():
 @babel.localeselector
 def get_locale():
     """get_locale method"""
+    locale = request.args.get('locale')
+    if locale and locale in Config.LANGUAGES:
+        return locale
     login_as = request.args.get('login_as')
     if login_as and int(login_as) in users:
         return g.user["locale"]
@@ -58,7 +61,3 @@ def hello():
         username = g.user["name"]
     return render_template("5-index.html", username=username)
 
-
-if __name__ == '__main__':
-    """main"""
-    app.run(debug=True)
