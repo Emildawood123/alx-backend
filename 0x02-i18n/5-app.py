@@ -37,8 +37,16 @@ def get_user():
 @app.before_request
 def before_request():
     """before_request"""
-    print(get_user())
     g.user = get_user()
+
+
+@babel.localeselector
+def get_locale():
+    """get_locale method"""
+    login_as = request.args.get('login_as')
+    if login_as and int(login_as) in users:
+        return g.user["locale"]
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @app.route("/")
