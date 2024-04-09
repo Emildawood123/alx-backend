@@ -36,8 +36,17 @@ def get_user():
 
 @app.before_request
 def before_request():
-    """before_request method"""
+    """before_request"""
     g.user = get_user()
+
+
+@babel.localeselector
+def get_locale():
+    """get_locale method"""
+    login_as = request.args.get('login_as')
+    if login_as and int(login_as) in users:
+        return g.user["locale"]
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @app.route("/")
@@ -48,3 +57,8 @@ def hello():
     if login_as and int(login_as) in users:
         username = g.user["name"]
     return render_template("5-index.html", username=username)
+
+
+if __name__ == '__main__':
+    """main"""
+    app.run(debug=True)
