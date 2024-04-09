@@ -59,4 +59,4 @@ def hello():
     login_as = request.args.get('login_as')
     if login_as and int(login_as) in users:
         username = g.user["name"]
-    return render_template("5-index.html", username=username)
+    return render_template("6-index.html", username=username)
