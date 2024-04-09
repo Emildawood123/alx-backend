@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 """1-app.py"""
-from flask import Flask
-from flask_babel import Babel
 import os
-import dates
+from flask import Flask
+from babel import dates, Locale
 
 
 class Config:
     """Cofig class"""
-    def __init__(self):
-        self.LANGUAGES = ["en", "fr"]
+    LANGUAGES = ["en", "fr"]
 
+
+app = Flask(__name__)
+app.config.from_object(Config)
 
 os.environ['LANG'] = Config.LANGUAGES[0]
-date.DEFAULT_TIMEZONE = 'UTC'
+dates.DEFAULT_TIMEZONE = "UTC"
 
-bable = Locale.default()
+babel = Locale.default()
